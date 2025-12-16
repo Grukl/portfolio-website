@@ -387,6 +387,7 @@ li a {
         justify-content: center;
         text-align: center;
         gap: 3rem;
+        padding-top: 100px;
     }
 
      #myNameHero {
@@ -436,9 +437,6 @@ li a {
         display: flex;
     }
 
-     h1 {
-        margin-top: 40px;
-    }
 }
 
 @media (max-width: 500px) {
@@ -447,10 +445,6 @@ li a {
         justify-content: center;
         text-align: center;
         gap: 3rem;
-    }
-
-    h1 {
-        margin-top: 40px;
     }
 
     #heroList {
