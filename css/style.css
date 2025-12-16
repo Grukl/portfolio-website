@@ -18,8 +18,13 @@ body {
     overflow-x: hidden;
 }
 
+section {
+    padding: 8rem 0;
+}
+
 h2 {
     font-size: 3rem;
+    text-align: center;
     margin-bottom: 3rem;
     color: #f5a623;
 }
@@ -34,20 +39,21 @@ h2 {
     color: #f5a623;
 }
 
-
 /* HEADER */
 header {
     width: 100%;
+    position: fixed;
+    z-index: 1000;
+    background-color: #2d2d2d ;
+    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.15);
 }
 
 nav {
     max-width: 1600px; 
     margin: 0 auto;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     height: 80px;
     padding: 0 40px;
     color: #FFFFFF;
@@ -78,19 +84,54 @@ ul {
     font-size: 18px;
 }
 
-/*SECTION 1*/
+.burger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.nav-links {
+    display: flex;
+}
+
+.burger span {
+    height: 3px;
+    width: 100%;
+    background: #f5a623;
+    border-radius: 2px;
+}
+
+/*Hero SECTION*/
+.hero-text h1,
+#myNameHero,
+#heroList,
+.pictureGorkem {
+    opacity: 0;
+}
+
+#heroSection * {
+    will-change: transform, opacity;
+}
+
 #heroSection {
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: space-between;
-        min-height: 100vh;
-
+    min-height: 95vh;
+    padding: 0;
 }
 
 h1 {
     margin-bottom: 20px;
+    animation: slideInRight 0.8s ease-out forwards;
+    animation-delay: 0.2s;
 }
 
 li a {
@@ -101,17 +142,26 @@ li a {
     border: 1px solid #f5a623;
     width: 40px;
     height: 40px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: auto;
     border-radius: 50%;
 }
 
+.heroLinks:hover {
+    background: rgba(245, 166, 35, 0.1);
+}
+
 #myNameHero {
     font-size: 80px;
+    animation: slideInLeft 0.8s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+#heroList {
+    animation: slideInBottom 0.8s ease-out forwards;
+    animation-delay: 0.4s;
 }
 
 .pictureGorkem {
@@ -121,6 +171,8 @@ li a {
     overflow: hidden;
     background-color: #f5a623;
     box-shadow: #f5a623;
+    animation: slideInRight 1s ease-out forwards;
+    animation-delay: 0.4s;
 }
 
 .pictureGorkem img {
@@ -130,30 +182,139 @@ li a {
     object-position: center 50%;
 }
 
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInBottom {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 /*About Me Section*/
-.aboutMe {
-    flex-direction: column;
-
-}
-
-
-
-
-
-
-
-/* SKILLS - Section*/
-.skillElem {
+#aboutMe {
     display: flex;
-    padding: 2.5rem;
-    transition: all 0.4s ease;
-       flex-direction: column;
-            align-items: flex-start;
-            position: relative;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
 }
 
-.skillElem:hover {
+.about-text {
+    max-width: 900px;
+    margin: 0 auto 8rem auto;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+}
+
+.about-timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+    margin-bottom: 3rem;
+}
+
+.animatedElem{
+    animation: autoSwipe;
+    animation-timeline: view();
+    animation-range: entry 10% cover 70vh;
+}
+
+.elem {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2.5rem;
+    padding-top: 4.2rem;
+    transition: all 0.4s ease;
+}
+
+@keyframes autoSwipe {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.elem .date {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.elem h3,
+.elem p {
+    text-align: center;
+}
+
+.cv-button {
+    margin: 0 auto;
+    background: transparent;
+    border: 1px solid #f5a623;
+    padding: 0;
+    border-radius: 30px;
+}
+
+.cv-button a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 0.8rem 2rem;
+    color: #f5a623;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.cv-button svg {
+    flex-shrink: 0;
+}
+
+.cv-button:hover {
+    background: rgba(245, 166, 35, 0.1);
+}
+
+/*Skills SECTION*/
+#skills .elem {
+    height: 180px;
+}
+
+.elem:hover {
     transform: translateY(-10px);
     background: rgba(255, 255, 255, 0.07);
     border-color: rgba(255, 255, 255, 0.4);
@@ -163,6 +324,12 @@ li a {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 3rem;
+    align-items: stretch;
+}
+
+.skillList img {
+    width: 90px;
+    height: auto;
 }
 
 .glass-design {
@@ -176,9 +343,117 @@ li a {
     border-radius: 24px;
 }
 
+/*Contact SECTION*/
+#contact {
+    text-align: center;
+}
+
+.contact-text {
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0;
+    margin: 0;
+}
+
+#contact .heroLinks {
+    width: 50px;
+    height: 50px;
+}
+
+#contact .heroLinks:hover {
+    transform: translateY(-3px);
+}
+
 /*Footer*/
 #footerText {
     margin: auto;
     padding: 1rem 0;
     text-align: center;
+}
+
+/*Responsive Design*/
+@media (max-width: 900px) {
+    #heroSection {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 3rem;
+    }
+
+     #myNameHero {
+        font-size: 56px;
+    }
+
+    .hero-text {
+        align-items: center;
+    }
+
+    #heroList {
+        justify-content: space-evenly;
+    }
+
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    .pictureGorkem {
+        width: 260px;
+        height: 260px;
+    }
+
+    nav ul {
+        display: none;
+    }
+
+    .burger {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 80px;
+        right: 20px;
+        background: rgba(45, 45, 45, 0.98);
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 2rem;
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.1);
+        display: none;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+}
+
+@media (max-width: 500px) {
+    #heroSection {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 3rem;
+    }
+
+    #heroList {
+        justify-content: space-evenly;
+    }
+
+    .hero-text {
+        align-items: center;
+    }
+    .pictureGorkem {
+        width: 220px;
+        height: 220px;
+    }
 }
